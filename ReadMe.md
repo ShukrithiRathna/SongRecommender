@@ -17,4 +17,4 @@ https://www.kaggle.com/davafons/top-100-spotify-songs-with-audio-feat-20172018
 #### Note
 * Kindly execute the files in the order of their naming (01,02,etc.)
 * As the original dataset has NOT been uploaded, kindly download it from the link and save with the appropriate name before execution of '01_data_cleaning.ipynb'
-* This step can also be omitted and the files can be executed starting with '02_visualizations.ipynb' 
+
