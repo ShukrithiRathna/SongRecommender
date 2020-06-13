@@ -11,10 +11,9 @@
 https://www.kaggle.com/davafons/top-100-spotify-songs-with-audio-feat-20172018
 
 * The above dataset contains Spotify's Top 100 Worldwide rankings for 50 regions for every day from 2017-2018, along with 13 features of each track
-* Recommendations are made for each region based on popularity
-* 
+* Recommendations are made for each region based on popularity. 
 
 #### Note
 * Kindly execute the files in the order of their naming (01,02,etc.)
-* As the original dataset has NOT been uploaded, kindly download it from the link and save with the appropriate name before execution of '01_data_cleaning.ipynb'
+* As the original dataset has NOT been uploaded, please download it from the link and save with the appropriate name before execution of '01_data_cleaning.ipynb'
 
