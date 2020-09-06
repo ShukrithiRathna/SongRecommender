@@ -47,7 +47,90 @@ def get_reco(row,col):
 
 app.title = 'Song Recommender'
 
+
+navbar = dbc.NavbarSimple(
+    children=[
+        dbc.NavItem(dbc.NavLink("Page 1", href="#")),
+        dbc.DropdownMenu(
+            children=[
+                dbc.DropdownMenuItem("More pages", header=True),
+                dbc.DropdownMenuItem("Page 2", href="#"),
+                dbc.DropdownMenuItem("Page 3", href="#"),
+            ],
+            nav=True,
+            in_navbar=True,
+            label="More",
+        ),
+    ],
+    brand="NavbarSimple",
+    brand_href="#",
+    color="primary",
+    dark=True,
+
+)
+card_song_info = dbc.Card(
+    dbc.CardBody(
+        [   
+            dbc.CardHeader("Song Info", className= "text-center"),
+            # html.H6('Song Info', className="card-title text-center"),
+            # html.H6("Card subtitle", className="card-subtitle"),
+             dbc.Row
+            ([
+                dbc.Col(html.H6(children='Track Name:'), className="mb-4", style = {'padding-top':"10px"}),
+                dbc.Col(html.Div(id='track_name',className="mb-4", style = {'padding-top':"10px"}))
+            ]),
+            dbc.Row
+            ([
+                dbc.Col(html.H6(children='Artist'), className="mb-4"),
+                dbc.Col(html.Div(id='artist',className="mb-4"))
+            ]),
+            # dbc.CardLink("Card link", href="#"),
+            # dbc.CardLink("External link", href="https://google.com"),
+        ],
+        
+    ),
+    style={"width": "20rem", "height":"160px", "justify":"around"},color="Dark", outline=True
+)   
+
+card_reco = dbc.CardDeck([
+ dbc.Card(
+    dbc.CardBody(
+        [
+            dbc.CardHeader("Similar Songs", className= "text-center",),
+            dbc.Row
+            ([
+                # dbc.Col(html.H6(children='Check out these songs that are similar to your choice:'), className="mb-4"),
+                dbc.Col(html.Div(id='similar_songs',className="mb-4",style = {'padding-top':"10px"}))
+            ]),
+            
+            # dbc.Row
+            # ([
+            #     dbc.Col(html.H6(children='Here are some songs by the same artist:'), className="mb-4",style = {'padding-left':'20px'}),
+            #     dbc.Col(html.Div(id='same_artist',className="mb-4")),
+                
+            # ]),
+        ]
+    ),
+    # style={"width": "15rem","height":"160px"},
+    ),
+
+ dbc.Card(
+    dbc.CardBody(
+        [
+            dbc.CardHeader("By The Same Artist", className= "text-center"),
+            dbc.Row
+            ([
+                # dbc.Col(html.H6(children='Here are some songs by the same artist:'), className="mb-4",style = {'padding-left':'20px'}),
+                dbc.Col(html.Div(id='same_artist',className="mb-4",style = {'padding-top':"10px"})),
+                
+            ],  justify="around"),
+        ]
+    ),
+    # style={"width": "15rem",  "height":"160px"}
+)  
+]) 
 app.layout = html.Div(children=[
+    # html.Nav(navbar, className = "navbar", style= {"width":'100vh'}),
     dbc.Container
     ([
         dbc.Row
@@ -58,8 +141,10 @@ app.layout = html.Div(children=[
         ([
             dbc.Col(html.H6(children='Item-based & User-Based Collaborative Filtering'), className="mb-4 text-center")
         ]),
+        
 
     ]),
+    
     dbc.Row
     ([
         dbc.Col(html.H5(children='Top Ranked Songs - Global'), className="mb-4 text-center"),
@@ -86,6 +171,7 @@ app.layout = html.Div(children=[
                     'width': '100px',
                     'maxWidth': '100px',
                     'minWidth': '100px',
+                    'border': '1px solid black'
                 },
                 style_cell_conditional=
                 [
@@ -95,38 +181,27 @@ app.layout = html.Div(children=[
                          'width': '40%'}
                 ],
                 page_action='none',
-                style_table={'height': '360px', 'overflowY': 'auto'}
+                style_table={'height': '360px', 'overflowY': 'auto',"margin-left":"10px", "margin-top":"10px"},
+                style_header={ 'border': '1px solid black' },
             ),
+        #    style= {"margin-left":"20px"}
         ),
         dbc.Col
         ([
-            html.Div(html.H6(children='Click on a track or artist from the table on the left, and we\'ll give you a recommendation!'), className="mb-4", style = {'padding-left':'20px','padding-right':'20px'}),
-            html.Div(html.H6(children='Song Info'), className="mb-4 text-center"),
-            dbc.Row
-            ([
-                dbc.Col(html.H6(children='Track Name:'), className="mb-4"),
-                dbc.Col(html.Div(id='track_name',className="mb-4"),style = {'padding-left':'20px'})
+            html.Div(html.H6(children='Click on your favourtie track or artist from the table on the left, and we\'ll give you a recommendation!'), className="mb-4", style = {'padding-left':'20px'}),
+            dbc.Row([
+                dbc.Col(card_reco, align="center",style = {'padding-bottom':'15px','padding-left':'70px'}),
+                # dbc.Col(card_reco_2, align="center",style = {'padding-top':'15px','padding-left':'10px'}),
             ]),
-            dbc.Row
-            ([
-                dbc.Col(html.H6(children='Artist'), className="mb-4"),
-                dbc.Col(html.Div(id='artist',className="mb-4"),style = {'padding-left':'20px'})
-            ]),
-            html.Div(html.H6(children='Recommendations'), className="mb-4 text-center"),
-            dbc.Row
-            ([
-                dbc.Col(html.H6(children='Check out these songs that are similar to your choice:'), className="mb-4"),
-                dbc.Col(html.Div(id='similar_songs',className="mb-4"),style = {'padding-left':'20px'})
-            ]),
-            dbc.Row
-            ([
-                dbc.Col(html.H6(children='Here are some songs by the same artist:'), className="mb-4",style = {'padding-left':'20px'}),
-                dbc.Col(html.Div(id='same_artist',className="mb-4"))
-            ])
+            html.Div(card_song_info,style = {'padding-left':'150px'})
+            
                        
-        ])
-    ])   
-])    
+        ], 
+     style= {"margin-left":"30px", "margin-right":"30px"})
+    ])
+    
+])  
+
 
 @app.callback([
     Output(component_id='track_name', component_property='children'),

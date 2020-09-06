@@ -6,3 +6,4 @@ new_data/regional_ranks.csv
 new_data/global_ranks.csv
 new_data/cleaned_ranks.csv
 new_data/borda_counts.csv
+assets/typography.css
