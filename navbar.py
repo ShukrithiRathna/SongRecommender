@@ -35,7 +35,7 @@ def Navbar():
                 ),
                 # href="https://plot.ly",
             ),
-            dbc.NavItem(dbc.NavLink("Recommendations", href="/recommender"), style={'padding-left':'750px', 'color':'black'}),
+            dbc.NavItem(dbc.NavLink("Recommendations", href="/app",className="ml-2 text-center"), style={'padding-left':'750px', 'color':'black'}),
         ],
 		# brand_href="/home",
         sticky="top",
